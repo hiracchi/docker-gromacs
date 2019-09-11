@@ -38,7 +38,12 @@ restart: stop start
 
 
 term:
-	docker exec -it ${CONTAINER_NAME} /bin/bash
+	docker run -it \
+		--rm \
+		--name ${CONTAINER_NAME} \
+		-u $(USER_ID):$(GROUP_ID) \
+		--volume "${PWD}:/work" \
+		"${PACKAGE}:${TAG}" /bin/bash
 
 
 logs:

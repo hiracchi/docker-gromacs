@@ -12,7 +12,9 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 ARG WORKDIR="/work"
 
-# setup packages ===============================================================
+# ------------------------------------------------------------------------------
+# setup packages
+# ------------------------------------------------------------------------------
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
@@ -20,12 +22,12 @@ RUN set -x \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-# entrypoint ------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# entrypoint
+# ------------------------------------------------------------------------------
 RUN set -x \
   && mkdir -p /work
 WORKDIR /work
 
 COPY usage.sh /usr/local/bin
 CMD ["/usr/local/bin/usage.sh"]
-
-
